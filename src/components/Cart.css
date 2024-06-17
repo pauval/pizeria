@@ -1,3 +1,5 @@
+/* Cart.css */
+
 .cart-container {
     padding: 1rem;
 }
@@ -9,12 +11,12 @@
     border-radius: 8px;
     margin-bottom: 1rem;
     padding: 1rem;
-    background-color: #fff;
 }
 
 .pizza-cart-img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
     border-radius: 8px;
     margin-right: 1rem;
 }
@@ -24,42 +26,40 @@
 }
 
 .pizza-cart-info h2 {
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.pizza-cart-info p {
+    margin: 0.5rem 0;
 }
 
 .button-group {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: 1rem;
 }
 
 .btn {
     padding: 0.5rem 1rem;
-    border: none;
     border-radius: 4px;
-    cursor: pointer;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .btn-agregar {
-    background-color: #4CAF50;
+    background-color: green;
     color: white;
-}
-
-.btn-agregar:hover {
-    background-color: #45a049;
 }
 
 .btn-eliminar {
-    background-color: #FF6347;
+    background-color: red;
     color: white;
 }
 
-.btn-eliminar:hover {
-    background-color: #e5533d;
-}
-
-.btn svg {
-    margin-right: 0.5rem;
+.total-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: auto;
 }

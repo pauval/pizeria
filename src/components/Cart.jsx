@@ -1,3 +1,5 @@
+// Cart.jsx
+
 import React, { useContext } from 'react';
 import { PizzaContext } from '../PizzaContext';
 import './Cart.css';
@@ -6,6 +8,10 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 const Cart = () => {
     const { cart, incrementQuantity, decrementQuantity, formatPrice } = useContext(PizzaContext);
     const totalPrice = cart.reduce((total, pizza) => total + pizza.price * (pizza.quantity || 1), 0);
+
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
 
     return (
         <div className="cart-container">
@@ -17,7 +23,7 @@ const Cart = () => {
                     <div key={pizza.id} className="pizza-cart-card">
                         <img src={pizza.img} alt={pizza.name} className="pizza-cart-img" />
                         <div className="pizza-cart-info">
-                            <h2>{pizza.name}</h2>
+                            <h2>{capitalizeFirstLetter(pizza.name)}</h2>
                             <p>Precio unitario: {formatPrice(pizza.price)}</p>
                             <p>Cantidad: {pizza.quantity}</p>
                             <div className="button-group">
@@ -29,6 +35,7 @@ const Cart = () => {
                                 </button>
                             </div>
                         </div>
+                        <p className="total-price">{formatPrice(pizza.price * (pizza.quantity || 1))}</p>
                     </div>
                 ))
             )}
@@ -38,3 +45,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
