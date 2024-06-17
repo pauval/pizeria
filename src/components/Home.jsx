@@ -2,33 +2,38 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { PizzaContext } from '../PizzaContext';
 import './Home.css';
+import { FaEye, FaShoppingCart } from 'react-icons/fa';
 
 const Home = () => {
-    const { pizzas, cart, setCart } = useContext(PizzaContext);
+    const { pizzas, addToCart } = useContext(PizzaContext);
 
-    const addToCart = (pizza) => {
-        const existingPizza = cart.find(item => item.id === pizza.id);
-        if (existingPizza) {
-            existingPizza.quantity += 1;
-            setCart([...cart]);
-        } else {
-            setCart([...cart, { ...pizza, quantity: 1 }]);
-        }
+    const formatPrice = (price) => {
+        return `$${price.toLocaleString('es-CL')}`;
     };
 
     return (
         <div className="home">
             {pizzas.map(pizza => (
                 <div key={pizza.id} className="pizza-card">
-                    <h3>{pizza.name}</h3>
                     <img src={pizza.img} alt={pizza.name} className="pizza-img" />
-                    <p>{pizza.ingredients.join(', ')}</p>
+                    <h3 className="pizza-name">{pizza.name}</h3>
+                    <div className="separator"></div>
+                    <div className="pizza-ingredients">
+                        <h4>Ingredientes</h4>
+                        <ul>
+                            {pizza.ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="separator"></div>
+                    <div className="pizza-price">{formatPrice(pizza.price)}</div>
                     <div className="pizza-buttons">
-                        <Link to={`/pizza/${pizza.id}`} className="btn">
-                            Ver más
+                        <Link to={`/pizza/${pizza.id}`} className="btn btn-ver-mas">
+                            Ver más <FaEye />
                         </Link>
-                        <button onClick={() => addToCart(pizza)} className="btn">
-                            Añadir
+                        <button onClick={() => addToCart(pizza)} className="btn btn-aniadir">
+                            Añadir <FaShoppingCart />
                         </button>
                     </div>
                 </div>

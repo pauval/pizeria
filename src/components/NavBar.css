@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #333;
+    background-color: #148fd7;
     color: white;
 }
 
@@ -20,7 +20,17 @@
 }
 
 .icon {
+    margin-right: 2.5rem;
+}
+
+.pizza-home::before {
+    content: "🍕";
     margin-right: 0.5rem;
+    margin-left: 2.5rem;
+}
+
+.cart-home {
+    margin-right: 3.5rem;
 }
 
 .navbar-right {

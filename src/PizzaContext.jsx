@@ -11,8 +11,21 @@ export const PizzaProvider = ({ children }) => {
         setPizzas(pizzasData);
     }, []);
 
+    const addToCart = (pizzaToAdd) => {
+        const existingPizza = cart.find(pizza => pizza.id === pizzaToAdd.id);
+
+        if (existingPizza) {
+            const updatedCart = cart.map(pizza =>
+                pizza.id === pizzaToAdd.id ? { ...pizza, quantity: pizza.quantity + 1 } : pizza
+            );
+            setCart(updatedCart);
+        } else {
+            setCart([...cart, { ...pizzaToAdd, quantity: 1 }]);
+        }
+    };
+
     return (
-        <PizzaContext.Provider value={{ pizzas, setPizzas, cart, setCart }}>
+        <PizzaContext.Provider value={{ pizzas, setPizzas, cart, addToCart }}>
             {children}
         </PizzaContext.Provider>
     );

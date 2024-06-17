@@ -8,19 +8,26 @@ const NavBar = () => {
     const { cart } = useContext(PizzaContext);
 
     const totalPrice = cart.reduce((total, pizza) => total + pizza.price * (pizza.quantity || 1), 0);
+    
+    const formatPrice = (price) => {
+        return `$${price.toLocaleString('es-CL')}`;
+    };
 
     return (
         <nav className="navbar">
             <div className="navbar-left">
                 <Link to="/" className="home-link">
-                    <FaPizzaSlice className="icon" />
-                    <span>Pizzería Mamma Mia!</span>
+                    <div className="pizza-home">
+                        <span>Pizzería Mamma Mia!</span>
+                    </div>
                 </Link>
             </div>
             <div className="navbar-right">
                 <Link to="/carrito" className="cart-link">
-                    <FaShoppingCart className="icon" />
-                    <span>${totalPrice}</span>
+                    <div className="cart-home">
+                        <FaShoppingCart className="icon" />
+                        <span>{formatPrice(totalPrice)}</span>
+                    </div>
                 </Link>
             </div>
         </nav>
